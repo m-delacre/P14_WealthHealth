@@ -1,38 +1,165 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* header et nav */
+.header{
+  width: 100%;
+  height: 80px;
+  background-color: #18206F;
+  margin: 0px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  gap: 30px;
+}
+
+.header p{
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navLink{
+  color: white;
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navButton{
+  width: auto;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #3b4bda;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.navButton:hover{
+  background-color: white;
+}
+
+.navLink:hover{
+  color: black;
+}
+
+/* page erreur */
+
+.errorPage{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
+}
+
+.errorPage-text{
+  color: black;
+  width: auto;
+  height: auto;
+  text-align: left;
+}
+
+.errorLink{
+  color: white;
+  text-decoration: none;
+}
+
+.navError{
+  width: fit-content;
+  height: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #3b4bda;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.navError:hover{
+  background-color: #18206F;
+}
+
+.addEmployeeForm form{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.addEmployeeForm-top{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.addEmployeeForm-bot{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
+.textInput{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 5px;
+}
+
+.textInput input{
+  width: 140px;
+}
+
+.saveButton{
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  background-color: #18206F;
+  color: white;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.saveButton:hover{
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 13px;
+  background-color: #3b4bda;
+  color: white;
+  cursor: pointer;
+}
+
+.address{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: fit-content;
+  height: fit-content;
+  background-color:  #919191;
+  border-radius: 10px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-top: 0px;
+  padding-bottom: 15px;
+  color: black;
+}
+
+.address p{
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.listEmployee{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
