@@ -1,7 +1,6 @@
 export default function makeEmployeeList(list) {
   const employeeList = [];
   list.forEach((employee) => {
-    console.log("employee",employee);
     const newEmployee = {
       firstName: employee.firstName,
       lastName: employee.lastName,
@@ -13,7 +12,6 @@ export default function makeEmployeeList(list) {
       zipCode: employee.zipCode,
       department: employee.department,
     };
-    console.log("newEmployee",newEmployee)
     employeeList.push(newEmployee);
   });
 

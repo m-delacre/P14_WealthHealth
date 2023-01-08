@@ -41,10 +41,6 @@ function AddEmployeeForm() {
     setZipCode(event.target.value);
   };
 
-  const getFormattedDate = (date) => {
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-  };
-
   const clearInput = () => {
     setFirstName("");
     setLastName("");

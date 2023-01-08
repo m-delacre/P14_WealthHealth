@@ -1,8 +1,8 @@
 /* header et nav */
-.header{
+.header {
   width: 100%;
   height: 80px;
-  background-color: #18206F;
+  background-color: #18206f;
   margin: 0px;
   display: flex;
   justify-content: center;
@@ -10,16 +10,16 @@
   gap: 30px;
 }
 
-.header p{
+.header p {
   color: white;
 }
 
-.navLink{
+.navLink {
   color: white;
   text-decoration: none;
 }
 
-.navButton{
+.navButton {
   width: auto;
   height: auto;
   padding-top: 10px;
@@ -31,17 +31,17 @@
   transition: 0.3s;
 }
 
-.navButton:hover{
+.navButton:hover {
   background-color: white;
 }
 
-.navLink:hover{
+.navLink:hover {
   color: black;
 }
 
 /* page erreur */
 
-.errorPage{
+.errorPage {
   width: 100%;
   height: 100%;
   display: flex;
@@ -51,19 +51,19 @@
   border: 2px solid red;
 }
 
-.errorPage-text{
+.errorPage-text {
   color: black;
   width: auto;
   height: auto;
   text-align: left;
 }
 
-.errorLink{
+.errorLink {
   color: white;
   text-decoration: none;
 }
 
-.navError{
+.navError {
   width: fit-content;
   height: auto;
   padding-top: 15px;
@@ -75,11 +75,11 @@
   transition: 0.3s;
 }
 
-.navError:hover{
-  background-color: #18206F;
+.navError:hover {
+  background-color: #18206f;
 }
 
-.addEmployeeForm form{
+.addEmployeeForm form {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -89,7 +89,7 @@
   margin-top: 30px;
 }
 
-.addEmployeeForm-top{
+.addEmployeeForm-top {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -99,36 +99,36 @@
   align-items: center;
 }
 
-.addEmployeeForm-bot{
+.addEmployeeForm-bot {
   width: 100%;
   height: fit-content;
   display: flex;
   justify-content: center;
 }
 
-.textInput{
+.textInput {
   display: flex;
   flex-direction: column;
   width: fit-content;
   gap: 5px;
 }
 
-.textInput input{
+.textInput input {
   width: 140px;
 }
 
-.saveButton{
+.saveButton {
   width: 100px;
   height: 50px;
   border: none;
   border-radius: 15px;
-  background-color: #18206F;
+  background-color: #18206f;
   color: white;
   cursor: pointer;
   font-size: 17px;
 }
 
-.saveButton:hover{
+.saveButton:hover {
   width: 100px;
   height: 50px;
   border: none;
@@ -138,13 +138,13 @@
   cursor: pointer;
 }
 
-.address{
+.address {
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: fit-content;
   height: fit-content;
-  background-color:  #919191;
+  background-color: #919191;
   border-radius: 10px;
   padding-right: 40px;
   padding-left: 40px;
@@ -153,13 +153,65 @@
   color: black;
 }
 
-.address p{
+.address p {
   margin-bottom: 0px;
   text-align: center;
 }
 
-.listEmployee{
+.listEmployeePage {
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  width: 100%;
+  height: fit-content;
+
+}
+
+.employeeTable {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+}
+
+.employeeTable td, .employeeTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.employeeTable tr:nth-child(even){background-color: #f2f2f2;}
+
+.employeeTable tr:hover {background-color: #ddd;}
+
+.employeeTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: left;
+  background-color: #3b4bda;
+  color: white;
+  text-align: center;
+  min-width: 80px;
+  max-width: 280px;
+  overflow: hidden;
+}
+
+.employeeTable td{
+  min-width: 80px;
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pagination {
+  padding: 0.5rem;
+}
+
+.research-global {
+  display: flex;
+  gap: 10px;
+  margin-left: 5px;
 }
