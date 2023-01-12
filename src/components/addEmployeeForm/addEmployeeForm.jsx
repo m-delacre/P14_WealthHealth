@@ -59,8 +59,8 @@ function AddEmployeeForm() {
     const newEmployee = new Employee(
       firstName,
       lastName,
-      dateFormater(birthDate.toLocaleString().split(',')[0].split(' ')[0]),
-      dateFormater(startDate.toLocaleString().split(',')[0].split(' ')[0]),
+      dateFormater(birthDate.toLocaleString().split(",")[0].split(" ")[0]),
+      dateFormater(startDate.toLocaleString().split(",")[0].split(" ")[0]),
       street,
       city,
       state,
@@ -106,10 +106,14 @@ function AddEmployeeForm() {
           <div className="textInput">
             <label htmlFor="birthDate">Date of Birth</label>
             <DatePicker
-              dateFormat="dd/MM/yyyy"
+              dateFormat="MM/dd/yyyy"
               id="birthDate"
               selected={birthDate}
               onChange={(date) => setBirthDate(date)}
+              peekNextMonth
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode="select"
             />
           </div>
           <div className="textInput">
@@ -119,6 +123,10 @@ function AddEmployeeForm() {
               id="startDate"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
+              peekNextMonth
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode="select"
             />
           </div>
           <div className="address">
