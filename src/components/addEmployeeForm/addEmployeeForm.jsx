@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Employee from "../../service/employeeBuilder";
 import dateFormater from "../../service/dateFormater";
+import { states } from "../../data/statesList";
+import { departments } from "../../data/departmentList";
+import { Selector } from "md-selector-react";
 
 function AddEmployeeForm() {
   const [firstName, setFirstName] = useState("");
@@ -16,6 +19,9 @@ function AddEmployeeForm() {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState(0);
   const [departement, setDepartement] = useState("");
+
+  const statesList = states;
+  const departementList = departments;
 
   const dispatch = useDispatch();
   const mesEmployees = useSelector((state) => state.employeesList);
@@ -151,7 +157,7 @@ function AddEmployeeForm() {
             </div>
             <div className="textInput">
               <label htmlFor="state">State</label>
-              {/* mon composant selector */}
+              <Selector title="State" valuesList={statesList} />
             </div>
             <div className="textInput">
               <label htmlFor="city">Zip Code</label>
@@ -164,7 +170,7 @@ function AddEmployeeForm() {
             </div>
             <div className="textInput">
               <label htmlFor="department">Department</label>
-              {/* mon composant selector */}
+              <Selector title="State" valuesList={departementList} />
             </div>
           </div>
         </div>
