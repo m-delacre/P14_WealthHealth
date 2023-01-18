@@ -1,17 +1,17 @@
-export const departments = [
+export const departmentList = [
   {
-    name: "Sales",
+      "name":"Sales"
   },
   {
-    name: "Marketing",
+      "name":"Marketing"
   },
   {
-    name: "Engineering",
+      "name":"Engineering"
   },
   {
-    name: "Human ressources",
+      "name":"Human ressources"
   },
   {
-    name: "Legal",
+      "name":"Legal"
   },
-];
+]

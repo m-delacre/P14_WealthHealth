@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Employee from "../../service/employeeBuilder";
 import dateFormater from "../../service/dateFormater";
-import { states } from "../../data/statesList";
-import { departments } from "../../data/departmentList";
+import { departmentList } from "../../data/departmentList";
+import { statesList } from "../../data/statesList";
 import { Selector } from "md-selector-react";
+import PureModal from "react-pure-modal";
+import "react-pure-modal/dist/react-pure-modal.min.css";
 
 function AddEmployeeForm() {
   const [firstName, setFirstName] = useState("");
@@ -16,16 +18,16 @@ function AddEmployeeForm() {
   const [startDate, setStartDate] = useState();
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
-  const [state, setState] = useState("");
+  const [states, setStates] = useState("");
   const [zipCode, setZipCode] = useState(0);
-  const [departement, setDepartement] = useState("");
-
-  const statesList = states;
-  const departementList = departments;
+  const [department, setDepartment] = useState("");
+  const [modal, setModal] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(false);
+  let [errorMessage, setErrorMessage] = useState("")
 
   const dispatch = useDispatch();
   const mesEmployees = useSelector((state) => state.employeesList);
-  console.log("mes employee:", mesEmployees);
+
 
   const handleChangeFirstName = (event) => {
     setFirstName(event.target.value);
@@ -43,8 +45,48 @@ function AddEmployeeForm() {
     setCity(event.target.value);
   };
 
+  const handleChangeStates = (value) => {
+    setStates(value);
+  };
+  const handleChangeDepartment = (value) => {
+    setDepartment(value);
+  };
+
   const handleChangeZipCode = (event) => {
     setZipCode(event.target.value);
+  };
+
+  const handleModal = () => {
+    setModal(!modal);
+  };
+
+  const formValidator = (Employee) => {
+    errorMessage = "";
+    if (Employee.firstName === "" || undefined) {
+      setFormIsValid(false);
+      setErrorMessage("Form invalid");
+    } else if (Employee.lastName === "" || undefined) {
+      setFormIsValid(false);
+      setErrorMessage("Form invalid");
+    } else if (Employee.birthDate === "" || undefined) {
+      setFormIsValid(false);
+      setErrorMessage("Form invalid");
+    } else if (Employee.startDate === "" || undefined) {
+      setFormIsValid(false);
+      setErrorMessage("Form invalid");
+    } else if (Employee.street === "" || undefined) {
+      setFormIsValid(false);
+      setErrorMessage("Form invalid");
+    } else if (Employee.city === "" || undefined) {
+      setFormIsValid(false);
+      setErrorMessage("Form invalid");
+    } else if (Employee.zipCode === 0) {
+      setFormIsValid(false);
+      setErrorMessage("Form invalid");;
+    } else {
+      setFormIsValid(true);
+      setErrorMessage("Form is valid, the employee has been registered");
+    }
   };
 
   const clearInput = () => {
@@ -54,9 +96,9 @@ function AddEmployeeForm() {
     setStartDate();
     setStreet("");
     setCity("");
-    setState("");
+    setStates("");
     setZipCode(0);
-    setDepartement("");
+    setDepartment("");
   };
 
   const AddNewEmployee = (e) => {
@@ -69,22 +111,22 @@ function AddEmployeeForm() {
       dateFormater(startDate.toLocaleString().split(",")[0].split(" ")[0]),
       street,
       city,
-      state,
+      states,
       zipCode,
-      departement
-    );
-    console.log(
-      `mon nouvel employé: ${newEmployee.firstName} ${newEmployee.lastName} ${newEmployee.city} ${birthDate}`
+      department
     );
 
-    //Add new employee to redux
-    dispatch({
-      type: "addEmployee",
-      payload: { newEmployee: newEmployee },
-    });
-
-    //clear the input
-    clearInput();
+    formValidator(newEmployee);
+    if (formIsValid) {
+      //Add new employee to redux
+      dispatch({
+        type: "addEmployee",
+        payload: { newEmployee: newEmployee },
+      });
+      handleModal();
+      //clear the input
+      clearInput();
+    }
   };
 
   return (
@@ -156,8 +198,13 @@ function AddEmployeeForm() {
               />
             </div>
             <div className="textInput">
-              <label htmlFor="state">State</label>
-              <Selector title="State" valuesList={statesList} />
+              <Selector
+                title="State"
+                valuesList={statesList}
+                onChange={(e) => {
+                  handleChangeStates(e.target.value);
+                }}
+              />
             </div>
             <div className="textInput">
               <label htmlFor="city">Zip Code</label>
@@ -169,15 +216,36 @@ function AddEmployeeForm() {
               />
             </div>
             <div className="textInput">
-              <label htmlFor="department">Department</label>
-              <Selector title="State" valuesList={departementList} />
+              <Selector
+                title="Department"
+                valuesList={departmentList}
+                onChange={(e) => {
+                  handleChangeDepartment(e.target.value);
+                }}
+              />
             </div>
           </div>
         </div>
         <div className="addEmployeeForm-bot">
-          <button className="saveButton" onClick={AddNewEmployee}>
+          <button className="saveButton" onClick={(e) => AddNewEmployee(e)}>
             Save
           </button>
+          <PureModal
+           header="Form validation..."
+           footer={
+             <div>
+             </div>
+           }
+            isOpen={modal}
+            closeButton="X"
+            closeButtonPosition="bottom"
+            onClose={() => {
+              setModal(false);
+              return true;
+            }}
+          >
+            <p>{`${errorMessage}`}</p>
+          </PureModal>
         </div>
       </form>
     </div>
