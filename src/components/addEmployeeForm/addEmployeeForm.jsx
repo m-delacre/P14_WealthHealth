@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import Employee from "../../service/employeeBuilder";
 import dateFormater from "../../service/dateFormater";
 import { departmentList } from "../../data/departmentList";
@@ -22,12 +21,14 @@ function AddEmployeeForm() {
   const [zipCode, setZipCode] = useState(0);
   const [department, setDepartment] = useState("");
   const [modal, setModal] = useState(false);
-  const [formIsValid, setFormIsValid] = useState(false);
-  let [errorMessage, setErrorMessage] = useState("")
+  let [errorMessage, setErrorMessage] = useState("");
+
+  let formIsValid = true;
+  const setFormIsValid = () => {
+    formIsValid = !formIsValid;
+  };
 
   const dispatch = useDispatch();
-  const mesEmployees = useSelector((state) => state.employeesList);
-
 
   const handleChangeFirstName = (event) => {
     setFirstName(event.target.value);
@@ -63,28 +64,21 @@ function AddEmployeeForm() {
   const formValidator = (Employee) => {
     errorMessage = "";
     if (Employee.firstName === "" || undefined) {
-      setFormIsValid(false);
+      setFormIsValid();
       setErrorMessage("Form invalid");
     } else if (Employee.lastName === "" || undefined) {
-      setFormIsValid(false);
-      setErrorMessage("Form invalid");
-    } else if (Employee.birthDate === "" || undefined) {
-      setFormIsValid(false);
-      setErrorMessage("Form invalid");
-    } else if (Employee.startDate === "" || undefined) {
-      setFormIsValid(false);
+      setFormIsValid();
       setErrorMessage("Form invalid");
     } else if (Employee.street === "" || undefined) {
-      setFormIsValid(false);
+      setFormIsValid();
       setErrorMessage("Form invalid");
     } else if (Employee.city === "" || undefined) {
-      setFormIsValid(false);
+      setFormIsValid();
       setErrorMessage("Form invalid");
     } else if (Employee.zipCode === 0) {
-      setFormIsValid(false);
-      setErrorMessage("Form invalid");;
+      setFormIsValid();
+      setErrorMessage("Form invalid");
     } else {
-      setFormIsValid(true);
       setErrorMessage("Form is valid, the employee has been registered");
     }
   };
@@ -117,15 +111,22 @@ function AddEmployeeForm() {
     );
 
     formValidator(newEmployee);
+
     if (formIsValid) {
       //Add new employee to redux
       dispatch({
         type: "addEmployee",
         payload: { newEmployee: newEmployee },
       });
+
       handleModal();
+
       //clear the input
       clearInput();
+
+    } else {
+
+      handleModal();
     }
   };
 
@@ -151,10 +152,10 @@ function AddEmployeeForm() {
               onChange={handleChangeLastName}
             />
           </div>
-          <div className="textInput">
+          <div className="textInput textInput-Date">
             <label htmlFor="birthDate">Date of Birth</label>
             <DatePicker
-              dateFormat="MM/dd/yyyy"
+              dateFormat="yyyy/MM/dd"
               id="birthDate"
               selected={birthDate}
               onChange={(date) => setBirthDate(date)}
@@ -164,10 +165,10 @@ function AddEmployeeForm() {
               dropdownMode="select"
             />
           </div>
-          <div className="textInput">
+          <div className="textInput textInput-Date">
             <label htmlFor="startDate">Start Date</label>
             <DatePicker
-              dateFormat="dd/MM/yyyy"
+              dateFormat="yyyy/MM/dd"
               id="startDate"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
@@ -231,11 +232,8 @@ function AddEmployeeForm() {
             Save
           </button>
           <PureModal
-           header="Form validation..."
-           footer={
-             <div>
-             </div>
-           }
+            header="Form validation..."
+            footer={<div></div>}
             isOpen={modal}
             closeButton="X"
             closeButtonPosition="bottom"

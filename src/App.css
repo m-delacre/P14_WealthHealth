@@ -84,7 +84,7 @@
   height: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
   justify-content: center;
   margin-top: 30px;
 }
@@ -106,7 +106,7 @@
   justify-content: center;
 }
 
-.textInput {
+.textInput{
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -114,8 +114,17 @@
 }
 
 .textInput input {
-  width: 140px;
+  width: 210px;
 }
+
+.textInput select {
+  width: 220px;
+}
+
+.textInput-Date select{
+  width: auto;
+}
+
 
 .saveButton {
   width: 100px;
