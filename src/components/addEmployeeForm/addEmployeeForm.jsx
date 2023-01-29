@@ -61,6 +61,12 @@ function AddEmployeeForm() {
     setModal(!modal);
   };
 
+  /**
+   * 
+   * @param {Object} Employee 
+   * 
+   * it checks if there is no empty value
+   */
   const formValidator = (Employee) => {
     errorMessage = "";
     if (Employee.firstName === "" || undefined) {
@@ -83,6 +89,11 @@ function AddEmployeeForm() {
     }
   };
 
+  /**
+   * 
+   * clear input after validation
+   * 
+   */
   const clearInput = () => {
     setFirstName("");
     setLastName("");
@@ -95,6 +106,11 @@ function AddEmployeeForm() {
     setDepartment("");
   };
 
+  /**
+   * 
+   * @param {Event} e 
+   * 
+   */
   const AddNewEmployee = (e) => {
     e.preventDefault();
     //Build the new employee with the user input
@@ -110,6 +126,7 @@ function AddEmployeeForm() {
       department
     );
 
+    //basic check if no empty value
     formValidator(newEmployee);
 
     if (formIsValid) {
@@ -125,7 +142,7 @@ function AddEmployeeForm() {
       clearInput();
 
     } else {
-
+      // tells the user that the input is invalid
       handleModal();
     }
   };

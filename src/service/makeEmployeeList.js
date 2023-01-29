@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {Array} list 
+ * @returns an array of object Employee
+ */
 export default function makeEmployeeList(list) {
   const employeeList = [];
   list.forEach((employee) => {
